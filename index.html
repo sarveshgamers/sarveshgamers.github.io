@@ -2,13 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SarveshGamers - Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SarveshGamers - Personal Portfolio</title>
   <link rel="icon" href="https://i.ibb.co/ZsFxdkQ/d075f8140e6c227ce55ed9caea97e36b.gif" type="image/gif" />
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
   <style>
     body {
-      background: repeating-linear-gradient(-45deg, #1e3a8a 0%, #1e3a8a 25%, #000000 50%, #1e3a8a 75%, #000000 100%);
+      background: repeating-linear-gradient(
+        -45deg,
+        #1e3a8a 0%,
+        #1e3a8a 25%,
+        #000000 50%,
+        #1e3a8a 75%,
+        #000000 100%
+      );
       background-size: 400% 400%;
       animation: gradientBG 30s linear infinite;
     }
@@ -19,16 +26,36 @@
       100% { background-position: 0% 50%; }
     }
 
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 1s forwards;
+    }
+    .fade-in.delay-1 { animation-delay: 0.5s; }
+    .fade-in.delay-2 { animation-delay: 1s; }
+    .fade-in.delay-3 { animation-delay: 1.5s; }
+    .fade-in.delay-4 { animation-delay: 2s; }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     .gradient-text {
       background: linear-gradient(to right, #60a5fa, #3b82f6, #2563eb);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
     }
 
     .border-gradient {
       position: relative;
       border-radius: 1rem;
       overflow: hidden;
+      z-index: 0;
     }
 
     .border-gradient::before {
@@ -38,17 +65,13 @@
       padding: 2px;
       background: linear-gradient(90deg, #3b82f6, #60a5fa, #2563eb);
       border-radius: inherit;
-      -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
       -webkit-mask-composite: xor;
+              mask-composite: exclude;
+      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
       mask-composite: exclude;
-      mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
       opacity: 0;
       transition: opacity 0.4s ease;
-      pointer-events: none;
     }
 
     .border-gradient:hover::before {
@@ -62,112 +85,144 @@
       height: 100%;
     }
 
-    /* Typing animation */
-    .typing {
+    .typing-wrapper {
+      display: inline-block;
       overflow: hidden;
       white-space: nowrap;
-      border-right: 3px solid white;
-      animation: typing 4s steps(30) 1, blink 0.75s step-end infinite;
+      border-right: 2px solid white;
+      width: 0;
+      animation: typing 3s steps(30, end) forwards;
+      animation-delay: 2.6s;
+      position: relative;
+    }
+
+    .typing-wrapper.done {
+      border-right: none;
+    }
+
+    .typing-text {
+      background: linear-gradient(to right, #60a5fa, #3b82f6, #2563eb);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
     }
 
     @keyframes typing {
-      from { width: 0 }
-      to { width: 100% }
+      from { width: 0; }
+      to { width: 21ch; }
+    }
+
+    .typing-wrapper::after {
+      content: "";
+      display: inline-block;
+      width: 2px;
+      height: 1em;
+      background: white;
+      margin-left: 2px;
+      animation: blink 0.6s step-end 6;
+      animation-fill-mode: forwards;
+      animation-delay: 2.6s;
+      position: absolute;
+      right: 0;
     }
 
     @keyframes blink {
-      50% { border-color: transparent }
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
     }
   </style>
 </head>
-
 <body class="font-sans text-white">
-  <!-- Header -->
-  <header class="w-full flex items-center px-6 py-4 bg-black bg-opacity-40 text-xl sm:text-2xl font-bold">
+  <header class="w-full flex items-center px-6 py-6 bg-black bg-opacity-40 shadow-md text-xl sm:text-2xl font-bold fade-in delay-1">
     <img src="https://i.ibb.co/ZsFxdkQ/d075f8140e6c227ce55ed9caea97e36b.gif" alt="Sarvesh Logo" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full mr-4">
     <span class="gradient-text">SarveshGamers</span>
   </header>
 
-  <!-- Main -->
-  <main class="flex flex-col items-center px-6 py-10 space-y-12">
+  <main class="min-h-screen flex flex-col items-center justify-center px-6 py-12 space-y-12">
+    <div class="text-center max-w-4xl fade-in delay-2 w-full space-y-10">
+      <div class="flex flex-col items-center space-y-4">
+        <img src="https://i.ibb.co/ZsFxdkQ/d075f8140e6c227ce55ed9caea97e36b.gif" alt="Sarvesh Avatar" class="w-24 h-24 sm:w-28 sm:h-28 rounded-full">
+        <h1 class="text-2xl sm:text-3xl font-semibold h-10">
+          <span class="typing-wrapper" id="typing"><span class="typing-text">Hey I am SarveshGamers</span></span>
+        </h1>
+      </div>
 
-    <!-- Hero with Typing -->
-    <div class="text-center space-y-4">
-      <img src="https://i.ibb.co/ZsFxdkQ/d075f8140e6c227ce55ed9caea97e36b.gif" alt="Avatar" class="w-24 h-24 sm:w-28 sm:h-28 rounded-full mx-auto">
-      <h1 class="text-2xl sm:text-3xl font-semibold gradient-text typing">Hey, I am SarveshGamers</h1>
-      <p class="text-lg text-white">I'm a tech enthusiast diving deep into Linux & Cloud Engineering.</p>
-    </div>
+      <p class="text-base sm:text-lg md:text-xl gradient-text px-2">
+        I'm a passionate tech enthusiast currently learning Linux and working toward becoming a Cloud Engineer.
+      </p>
 
-    <!-- Roles -->
-    <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-4xl">
-      <!-- FreezeHost -->
-      <div class="border-gradient">
-        <a href="https://freezehost.pro" target="_blank" class="block inner text-center">
-          <img src="https://i.ibb.co/8Dxr59Cv/821f762f1031775140155ee07c519e6f.webp" alt="FreezeHost" class="w-14 h-14 rounded-full mx-auto mb-2">
-          <h2 class="text-xl font-semibold gradient-text mb-2">FreezeHost.pro</h2>
-          <p class="text-white text-sm">Admin — managing infrastructure, user support, and backend ops.</p>
+      <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-10 px-2">
+        <div class="border-gradient fade-in delay-3">
+          <a href="https://freezehost.pro" target="_blank" class="block inner shadow-xl transform transition duration-300">
+            <div class="flex flex-col items-center mb-4 gap-3">
+              <img src="https://i.ibb.co/8Dxr59Cv/821f762f1031775140155ee07c519e6f.webp" alt="FreezeHost Logo" class="w-14 h-14 rounded-full" />
+              <h2 class="text-xl font-semibold gradient-text">FreezeHost.pro</h2>
+            </div>
+            <p class="gradient-text">Admin — managing infrastructure, user support, and technical backend operations.</p>
+          </a>
+        </div>
+
+        <div class="border-gradient fade-in delay-3">
+          <a href="https://coderoasis.com" target="_blank" class="block inner shadow-xl transform transition duration-300">
+            <div class="flex flex-col items-center mb-4 gap-3">
+              <img src="https://i.ibb.co/8L7RcJJD/Whats-App-Image-2025-07-14-at-00-39-46-34f86e2c.jpg" alt="CoderOasis Logo" class="w-14 h-14 rounded-full" />
+              <h2 class="text-xl font-semibold gradient-text">CoderOasis.com</h2>
+            </div>
+            <p class="gradient-text">Junior Engineer — contributing to engineering tasks, Linux setup, and cloud development.</p>
+          </a>
+        </div>
+      </div>
+
+      <div class="border-gradient fade-in delay-3 mx-2">
+        <div class="inner shadow-xl backdrop-blur-sm">
+          <p class="gradient-text">
+            Welcome to my personal site! I’m always experimenting with new technologies — from web hosting and server deployment to shell scripting and containerization. I love sharing what I learn and building cool stuff with open-source tools.
+          </p>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-6 fade-in delay-4 px-2">
+        <a href="mailto:phonesarvesh95@gmail.com" target="_blank" class="border-gradient rounded-full flex items-center gap-2 px-4 py-2">
+          <div class="inner flex items-center gap-2">
+            <img src="https://i.ibb.co/9HSqjHZR/email.png" alt="email" class="w-6 h-6 rounded-full"> <span class="text-white">Email</span>
+          </div>
+        </a>
+        <a href="https://github.com/sarveshgamers" target="_blank" class="border-gradient rounded-full flex items-center gap-2 px-4 py-2">
+          <div class="inner flex items-center gap-2">
+            <img src="https://i.ibb.co/GQyvXfcH/github.png" alt="github" class="w-6 h-6 rounded-full"> <span class="text-white">GitHub</span>
+          </div>
+        </a>
+        <a href="https://discord.com/users/741184115981680702" target="_blank" class="border-gradient rounded-full flex items-center gap-2 px-4 py-2">
+          <div class="inner flex items-center gap-2">
+            <img src="https://i.ibb.co/2Y5hfgk8/discord.jpg" alt="discord" class="w-6 h-6 rounded-full"> <span class="text-white">Discord</span>
+          </div>
+        </a>
+        <a href="https://www.reddit.com/user/sarveshgamers/" target="_blank" class="border-gradient rounded-full flex items-center gap-2 px-4 py-2">
+          <div class="inner flex items-center gap-2">
+            <img src="https://i.ibb.co/fdxywY36/reddit.jpg" alt="reddit" class="w-6 h-6 rounded-full"> <span class="text-white">Reddit</span>
+          </div>
         </a>
       </div>
 
-      <!-- CoderOasis -->
-      <div class="border-gradient">
-        <a href="https://coderoasis.com" target="_blank" class="block inner text-center">
-          <img src="https://i.ibb.co/8L7RcJJD/Whats-App-Image-2025-07-14-at-00-39-46-34f86e2c.jpg" alt="CoderOasis" class="w-14 h-14 rounded-full mx-auto mb-2">
-          <h2 class="text-xl font-semibold gradient-text mb-2">CoderOasis.com</h2>
-          <p class="text-white text-sm">Junior Engineer — contributing to engineering tasks and cloud setup.</p>
-        </a>
+<div class="border-gradient fade-in delay-4 mx-2">
+  <div class="inner shadow-xl backdrop-blur-sm">
+    <h2 class="text-2xl font-semibold gradient-text mb-6">My GitHub</h2>
+    <p class="gradient-text mb-6">Check out the open-source projects, experiments, and code I'm working on.</p>
+    <a href="https://github.com/sarveshgamers" target="_blank" class="relative z-10 inline-block px-6 py-3 bg-gray-800 hover:bg-gray-700 rounded-lg text-white">Visit My GitHub →</a>
       </div>
-    </div>
-
-    <!-- About -->
-    <div class="border-gradient w-full max-w-4xl">
-      <div class="inner">
-        <p class="text-base sm:text-lg gradient-text">
-          Welcome to my personal site! I’m always experimenting with new technologies — from web hosting and server deployment to shell scripting and containerization. I love sharing what I learn and building cool stuff with open-source tools.
-        </p>
-      </div>
-    </div>
-
-    <!-- Social Links -->
-    <div class="flex flex-wrap justify-center gap-5 w-full max-w-3xl">
-      <a href="mailto:phonesarvesh95@gmail.com" target="_blank" class="border-gradient rounded-full px-4 py-2 flex items-center gap-2">
-        <div class="inner flex items-center gap-2">
-          <img src="https://i.ibb.co/9HSqjHZR/email.png" alt="Email" class="w-6 h-6 rounded-full"> Email
-        </div>
-      </a>
-
-      <a href="https://github.com/sarveshgamers" target="_blank" class="border-gradient rounded-full px-4 py-2 flex items-center gap-2">
-        <div class="inner flex items-center gap-2">
-          <img src="https://i.ibb.co/GQyvXfcH/github.png" alt="GitHub" class="w-6 h-6 rounded-full"> GitHub
-        </div>
-      </a>
-
-      <a href="https://discord.com/users/741184115981680702" target="_blank" class="border-gradient rounded-full px-4 py-2 flex items-center gap-2">
-        <div class="inner flex items-center gap-2">
-          <img src="https://i.ibb.co/2Y5hfgk8/discord.jpg" alt="Discord" class="w-6 h-6 rounded-full"> Discord
-        </div>
-      </a>
-
-      <a href="https://www.reddit.com/user/sarveshgamers/" target="_blank" class="border-gradient rounded-full px-4 py-2 flex items-center gap-2">
-        <div class="inner flex items-center gap-2">
-          <img src="https://i.ibb.co/fdxywY36/reddit.jpg" alt="Reddit" class="w-6 h-6 rounded-full"> Reddit
-        </div>
-      </a>
-    </div>
-
-    <!-- GitHub Section -->
-    <div class="border-gradient w-full max-w-4xl">
-      <div class="inner text-center">
-        <h2 class="text-2xl font-semibold gradient-text mb-4">My GitHub</h2>
-        <p class="gradient-text mb-4">Check out the open-source projects and code I’m working on.</p>
-        <a href="https://github.com/sarveshgamers" target="_blank" class="inline-block px-6 py-2 bg-gray-800 hover:bg-gray-700 rounded-lg text-white">Visit My GitHub →</a>
-      </div>
+     </div>
     </div>
   </main>
 
-  <!-- Footer -->
-  <footer class="text-center text-sm gradient-text py-6 px-4">
+  <footer class="text-center text-sm gradient-text py-8 px-4">
     © 2025 SarveshGamers. All rights reserved. Design with ❤️ by @sarveshgamers
   </footer>
+
+  <script>
+    setTimeout(() => {
+      document.getElementById("typing").classList.add("done");
+    }, 5700);
+  </script>
 </body>
 </html>
