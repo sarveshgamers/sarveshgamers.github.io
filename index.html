@@ -1,228 +1,320 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SarveshGamers(Personal Portfolio)</title>
+  
+  <!-- SEO & Metadata -->
+  <title>SarveshGamers | Tech Enthusiast & Aspiring Cloud Engineer</title>
+  <meta name="description" content="Welcome to the personal portfolio of SarveshGamers. A passionate tech enthusiast learning Linux, contributing to open-source, and working towards becoming a Cloud Engineer." />
+  <meta name="author" content="SarveshGamers" />
+  <meta name="keywords" content="SarveshGamers, portfolio, cloud engineer, linux, tech enthusiast, FreezeHost, CoderOasis, open source, interactive portfolio" />
   <link rel="icon" href="https://i.ibb.co/ZsFxdkQ/d075f8140e6c227ce55ed9caea97e36b.gif" type="image/gif" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://your-domain.com/" />
+  <meta property="og:title" content="SarveshGamers | Tech Enthusiast & Aspiring Cloud Engineer" />
+  <meta property="og:description" content="Explore the projects and journey of SarveshGamers, a passionate tech enthusiast and aspiring Cloud Engineer." />
+  <meta property="og:image" content="https://i.ibb.co/ZsFxdkQ/d075f8140e6c227ce55ed9caea97e36b.gif" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content="https://your-domain.com/" />
+  <meta property="twitter:title" content="SarveshGamers | Tech Enthusiast & Aspiring Cloud Engineer" />
+  <meta property="twitter:description" content="Explore the projects and journey of SarveshGamers, a passionate tech enthusiast and aspiring Cloud Engineer." />
+  <meta property="twitter:image" content="https://i.ibb.co/ZsFxdkQ/d075f8140e6c227ce55ed9caea97e36b.gif" />
+
+  <!-- Stylesheets -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "SarveshGamers",
+    "url": "https://your-domain.com/",
+    "image": "https://i.ibb.co/ZsFxdkQ/d075f8140e6c227ce55ed9caea97e36b.gif",
+    "sameAs": [
+      "https://github.com/sarveshgamers",
+      "https://discord.com/users/74115981680702",
+      "https://www.reddit.com/user/sarveshgamers/",
+      "mailto:phonesarvesh95@gmail.com"
+    ],
+    "jobTitle": "Aspiring Cloud Engineer"
+  }
+  </script>
+
   <style>
+    :root {
+      --char-count: 22ch;
+      --typing-duration: 2.2s;
+    }
     body {
-      background: repeating-linear-gradient(
-        -45deg,
-        #1e3a8a 0%,
-        #1e3a8a 25%,
-        #000000 50%,
-        #1e3a8a 75%,
-        #000000 100%
-      );
-      background-size: 400% 400%;
-      animation: gradientBG 30s linear infinite;
+      font-family: 'Poppins', sans-serif;
+      background-color: #020617; /* Dark navy fallback */
     }
-
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    /* Particle JS Canvas */
+    #tsparticles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
     }
-
-    .fade-in {
+    /* Scroll-reveal animations */
+    .scroll-reveal {
       opacity: 0;
-      transform: translateY(20px);
-      animation: fadeInUp 1s forwards;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
     }
-    .fade-in.delay-1 { animation-delay: 0.5s; }
-    .fade-in.delay-2 { animation-delay: 1s; }
-    .fade-in.delay-3 { animation-delay: 1.5s; }
-    .fade-in.delay-4 { animation-delay: 2s; }
-
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .scroll-reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
     }
+    .scroll-reveal.delay-1 { transition-delay: 0.1s; }
+    .scroll-reveal.delay-2 { transition-delay: 0.2s; }
+    .scroll-reveal.delay-3 { transition-delay: 0.3s; }
 
+    /* Gradient Text & Borders */
     .gradient-text {
       background: linear-gradient(to right, #60a5fa, #3b82f6, #2563eb);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      color: transparent;
     }
-
-    .border-gradient {
+    .card-border {
       position: relative;
       border-radius: 1rem;
-      overflow: hidden;
-      z-index: 0;
-    }
-
-    .border-gradient::before {
-      content: "";
-      position: absolute;
-      inset: 0;
       padding: 2px;
-      background: linear-gradient(90deg, #3b82f6, #60a5fa, #2563eb);
-      border-radius: inherit;
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-              mask-composite: exclude;
-      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      mask-composite: exclude;
-      opacity: 0;
-      transition: opacity 0.4s ease;
+      background: linear-gradient(120deg, rgba(59, 130, 246, 0.3), rgba(37, 99, 235, 0.1), rgba(59, 130, 246, 0.3));
     }
-
-    .border-gradient:hover::before {
-      opacity: 1;
-    }
-
-    .inner {
-      background-color: rgba(255, 255, 255, 0.05);
+    .card-inner {
+      background-color: rgba(17, 24, 39, 0.8);
+      backdrop-filter: blur(12px);
       border-radius: 0.875rem;
-      padding: 1.5rem;
+      padding: 2rem;
       height: 100%;
     }
-
+    /* Typing Animation */
     .typing-wrapper {
+      display: inline-block;
+      position: relative;
+      font-size: clamp(1.5rem, 4vw, 2.25rem);
+      height: 1.2em;
+    }
+    .typing-text-container {
       display: inline-block;
       overflow: hidden;
       white-space: nowrap;
-      border-right: 2px solid white;
+      border-right: 3px solid white;
       width: 0;
-      animation: typing 3s steps(30, end) forwards;
-      animation-delay: 2.6s;
-      position: relative;
+      animation: typing var(--typing-duration) steps(var(--char-count), end) forwards, blink .75s step-end infinite;
+      animation-delay: 1.5s;
     }
-
-    .typing-wrapper.done {
-      border-right: none;
+    .typing-wrapper.done .typing-text-container {
+      border-right-color: transparent;
+      animation: none;
     }
-
-    .typing-text {
-      background: linear-gradient(to right, #60a5fa, #3b82f6, #2563eb);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      color: transparent;
+    @keyframes typing { from { width: 0; } to { width: 100%; } }
+    @keyframes blink { 50% { border-color: transparent; } }
+    /* Avatar glow */
+    .avatar-glow {
+      animation: pulse-glow 5s ease-in-out infinite;
     }
-
-    @keyframes typing {
-      from { width: 0; }
-      to { width: 21ch; }
+    @keyframes pulse-glow {
+      0% { filter: drop-shadow(0 0 8px rgba(96, 165, 250, 0.4)); }
+      50% { filter: drop-shadow(0 0 16px rgba(59, 130, 246, 0.8)); }
+      100% { filter: drop-shadow(0 0 8px rgba(96, 165, 250, 0.4)); }
     }
-
-    .typing-wrapper::after {
-      content: "";
-      display: inline-block;
-      width: 2px;
-      height: 1em;
-      background: white;
-      margin-left: 2px;
-      animation: blink 0.6s step-end 6;
-      animation-fill-mode: forwards;
-      animation-delay: 2.6s;
-      position: absolute;
-      right: 0;
+    /* Header transition */
+    header {
+      transition: background-color 0.4s ease-out, backdrop-filter 0.4s ease-out;
     }
-
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
+    header.scrolled {
+      background-color: rgba(2, 6, 23, 0.7); /* bg-slate-900 with opacity */
+      backdrop-filter: blur(10px);
     }
   </style>
 </head>
-<body class="font-sans text-white">
-  <header class="w-full flex items-center px-6 py-6 bg-black bg-opacity-40 shadow-md text-xl sm:text-2xl font-bold fade-in delay-1">
+<body class="bg-slate-900 text-gray-200 antialiased">
+  
+  <div id="tsparticles"></div>
+
+  <header id="header" class="w-full flex items-center px-6 py-4 fixed top-0 z-50">
     <img src="https://i.ibb.co/ZsFxdkQ/d075f8140e6c227ce55ed9caea97e36b.gif" alt="Sarvesh Logo" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full mr-4">
-    <span class="gradient-text">SarveshGamers</span>
+    <span class="gradient-text text-xl sm:text-2xl font-bold">SarveshGamers</span>
   </header>
 
-  <main class="min-h-screen flex flex-col items-center justify-center px-6 py-12 space-y-12">
-    <div class="text-center max-w-4xl fade-in delay-2 w-full space-y-10">
-      <div class="flex flex-col items-center space-y-4">
-        <img src="https://i.ibb.co/ZsFxdkQ/d075f8140e6c227ce55ed9caea97e36b.gif" alt="Sarvesh Avatar" class="w-24 h-24 sm:w-28 sm:h-28 rounded-full">
-        <h1 class="text-2xl sm:text-3xl font-semibold h-10">
-          <span class="typing-wrapper" id="typing"><span class="typing-text">Hi!, I am SarveshGamers</span></span>
+  <main class="relative z-10 min-h-screen flex flex-col items-center justify-center px-6 pt-32 pb-12 space-y-20 sm:space-y-24">
+    
+    <!-- Hero Section -->
+    <section id="hero" class="text-center w-full max-w-4xl space-y-6">
+      <div class="flex flex-col items-center space-y-4 scroll-reveal">
+        <img src="https://i.ibb.co/ZsFxdkQ/d075f8140e6c227ce55ed9caea97e36b.gif" alt="Sarvesh Avatar" class="w-28 h-28 sm:w-32 sm:h-32 rounded-full avatar-glow">
+        <h1 class="font-semibold h-12" id="typing-wrapper">
+          <span class="typing-wrapper">
+            <span class="typing-text-container">
+              <span class="gradient-text" id="typing-text">Hi, I'm SarveshGamers</span>
+            </span>
+          </span>
         </h1>
       </div>
-
-      <p class="text-base sm:text-lg md:text-xl gradient-text px-2">
-        I'm a passionate tech enthusiast currently learning Linux and working toward becoming a Cloud Engineer.
+      <p class="text-lg sm:text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto scroll-reveal delay-1">
+        I'm a passionate tech enthusiast currently learning Linux and working toward becoming a <span class="font-semibold gradient-text">Cloud Engineer</span>.
       </p>
+    </section>
 
-      <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-10 px-2">
-        <div class="border-gradient fade-in delay-3">
-          <a href="https://freezehost.pro" target="_blank" class="block inner shadow-xl transform transition duration-300">
-            <div class="flex flex-col items-center mb-4 gap-3">
-              <img src="https://i.ibb.co/8Dxr59Cv/821f762f1031775140155ee07c519e6f.webp" alt="FreezeHost Logo" class="w-14 h-14 rounded-full" />
-              <h2 class="text-xl font-semibold gradient-text">FreezeHost.pro</h2>
-            </div>
-            <p class="gradient-text">Admin — managing infrastructure, user support, and technical backend operations.</p>
-          </a>
-        </div>
-
-        <div class="border-gradient fade-in delay-3">
-          <a href="https://coderoasis.com" target="_blank" class="block inner shadow-xl transform transition duration-300">
-            <div class="flex flex-col items-center mb-4 gap-3">
-              <img src="https://i.ibb.co/8L7RcJJD/Whats-App-Image-2025-07-14-at-00-39-46-34f86e2c.jpg" alt="CoderOasis Logo" class="w-14 h-14 rounded-full" />
-              <h2 class="text-xl font-semibold gradient-text">CoderOasis.com</h2>
-            </div>
-            <p class="gradient-text">Junior Engineer — contributing to engineering tasks, Linux setup, and cloud development.</p>
-          </a>
-        </div>
+    <!-- Projects Section -->
+    <section id="projects" class="w-full max-w-5xl grid sm:grid-cols-1 md:grid-cols-2 gap-10">
+      <div class="scroll-reveal delay-2" data-tilt data-tilt-glare data-tilt-max-glare="0.2" data-tilt-scale="1.05">
+        <a href="https://freezehost.pro" target="_blank" rel="noopener noreferrer" class="block card-border">
+          <div class="card-inner flex flex-col items-center text-center gap-3">
+            <img src="https://i.ibb.co/8Dxr59Cv/821f762f1031775140155ee07c519e6f.webp" alt="FreezeHost Logo" class="w-16 h-16 rounded-full mb-2" />
+            <h2 class="text-2xl font-bold gradient-text">FreezeHost.pro</h2>
+            <p class="text-gray-300">Admin — managing infrastructure, user support, and technical backend operations.</p>
+          </div>
+        </a>
       </div>
+      <div class="scroll-reveal delay-3" data-tilt data-tilt-glare data-tilt-max-glare="0.2" data-tilt-scale="1.05">
+        <a href="https://coderoasis.com" target="_blank" rel="noopener noreferrer" class="block card-border">
+          <div class="card-inner flex flex-col items-center text-center gap-3">
+            <img src="https://i.ibb.co/8L7RcJJD/Whats-App-Image-2025-07-14-at-00-39-46-34f86e2c.jpg" alt="CoderOasis Logo" class="w-16 h-16 rounded-full mb-2" />
+            <h2 class="text-2xl font-bold gradient-text">CoderOasis.com</h2>
+            <p class="text-gray-300">Junior Engineer — contributing to engineering tasks, Linux setup, and cloud development.</p>
+          </div>
+        </a>
+      </div>
+    </section>
 
-      <div class="border-gradient fade-in delay-3 mx-2">
-        <div class="inner shadow-xl backdrop-blur-sm">
-          <p class="gradient-text">
+    <!-- About & GitHub Section -->
+    <section id="about" class="w-full max-w-5xl card-border scroll-reveal">
+      <div class="card-inner text-center space-y-8">
+        <div>
+          <h2 class="text-3xl font-bold gradient-text mb-4">About Me</h2>
+          <p class="text-gray-300 text-lg max-w-3xl mx-auto">
             Welcome to my personal site! I’m always experimenting with new technologies — from web hosting and server deployment to shell scripting and containerization. I love sharing what I learn and building cool stuff with open-source tools.
           </p>
         </div>
+        <div class="border-t border-blue-500/20 pt-8">
+           <h3 class="text-2xl font-semibold gradient-text mb-3">My GitHub</h3>
+           <p class="text-gray-300 mb-6">Check out my open-source projects, experiments, and code.</p>
+           <a href="https://github.com/sarveshgamers" target="_blank" rel="noopener noreferrer" class="inline-block px-8 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg text-white font-semibold transition-transform transform hover:scale-105">Visit My GitHub →</a>
+        </div>
       </div>
+    </section>
 
-      <div class="flex flex-wrap justify-center gap-6 fade-in delay-4 px-2">
-        <a href="mailto:phonesarvesh95@gmail.com" target="_blank" class="border-gradient rounded-full flex items-center gap-2 px-4 py-2">
-          <div class="inner flex items-center gap-2">
-            <img src="https://i.ibb.co/9HSqjHZR/email.png" alt="email" class="w-6 h-6 rounded-full"> <span class="text-white">Email</span>
-          </div>
-        </a>
-        <a href="https://github.com/sarveshgamers" target="_blank" class="border-gradient rounded-full flex items-center gap-2 px-4 py-2">
-          <div class="inner flex items-center gap-2">
-            <img src="https://i.ibb.co/GQyvXfcH/github.png" alt="github" class="w-6 h-6 rounded-full"> <span class="text-white">GitHub</span>
-          </div>
-        </a>
-        <a href="https://discord.com/users/741184115981680702" target="_blank" class="border-gradient rounded-full flex items-center gap-2 px-4 py-2">
-          <div class="inner flex items-center gap-2">
-            <img src="https://i.ibb.co/2Y5hfgk8/discord.jpg" alt="discord" class="w-6 h-6 rounded-full"> <span class="text-white">Discord</span>
-          </div>
-        </a>
-        <a href="https://www.reddit.com/user/sarveshgamers/" target="_blank" class="border-gradient rounded-full flex items-center gap-2 px-4 py-2">
-          <div class="inner flex items-center gap-2">
-            <img src="https://i.ibb.co/fdxywY36/reddit.jpg" alt="reddit" class="w-6 h-6 rounded-full"> <span class="text-white">Reddit</span>
-          </div>
-        </a>
-      </div>
-
-<div class="border-gradient fade-in delay-4 mx-2">
-  <div class="inner shadow-xl backdrop-blur-sm">
-    <h2 class="text-2xl font-semibold gradient-text mb-6">My GitHub</h2>
-    <p class="gradient-text mb-6">Check out the open-source projects, experiments, and code I'm working on.</p>
-    <a href="https://github.com/sarveshgamers" target="_blank" class="relative z-10 inline-block px-6 py-3 bg-gray-800 hover:bg-gray-700 rounded-lg text-white">Visit My GitHub →</a>
-      </div>
-     </div>
-    </div>
+    <!-- Socials Section -->
+    <section id="socials" class="flex flex-wrap justify-center items-center gap-8 scroll-reveal">
+      <a href="mailto:phonesarvesh95@gmail.com" target="_blank" rel="noopener noreferrer" class="group transform transition-transform hover:-translate-y-1" aria-label="Email">
+        <i class="fa-solid fa-envelope text-4xl text-gray-400 group-hover:text-white transition-colors duration-300"></i>
+      </a>
+      <a href="https://github.com/sarveshgamers" target="_blank" rel="noopener noreferrer" class="group transform transition-transform hover:-translate-y-1" aria-label="GitHub">
+        <i class="fa-brands fa-github text-4xl text-gray-400 group-hover:text-white transition-colors duration-300"></i>
+      </a>
+      <a href="https://discord.com/users/741184115981680702" target="_blank" rel="noopener noreferrer" class="group transform transition-transform hover:-translate-y-1" aria-label="Discord">
+        <i class="fa-brands fa-discord text-4xl text-gray-400 group-hover:text-white transition-colors duration-300"></i>
+      </a>
+      <a href="https://www.reddit.com/user/sarveshgamers/" target="_blank" rel="noopener noreferrer" class="group transform transition-transform hover:-translate-y-1" aria-label="Reddit">
+        <i class="fa-brands fa-reddit-alien text-4xl text-gray-400 group-hover:text-white transition-colors duration-300"></i>
+      </a>
+    </section>
   </main>
 
-  <footer class="text-center text-sm gradient-text py-8 px-4">
-    © 2025 SarveshGamers. All rights reserved. Design with ❤️ by @sarveshgamers
+  <footer class="text-center text-sm text-gray-400 py-8 px-4 relative z-10">
+    <p>© 2025 SarveshGamers. All rights reserved.</p>
+    <p class="mt-1">Designed with <span class="text-red-500">❤️</span> by @sarveshgamers</p>
   </footer>
 
+  <!-- Core Libraries for Interactivity -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@1.37.5/tsparticles.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.2/dist/vanilla-tilt.min.js"></script>
+
   <script>
-    setTimeout(() => {
-      document.getElementById("typing").classList.add("done");
-    }, 5700);
+    document.addEventListener('DOMContentLoaded', function() {
+      // --- tsParticles Initialization ---
+      tsParticles.load("tsparticles", {
+        fpsLimit: 60,
+        interactivity: {
+          events: {
+            onHover: { enable: true, mode: "repulse" },
+            resize: true,
+          },
+          modes: {
+            repulse: { distance: 80, duration: 0.4 },
+          },
+        },
+        particles: {
+          color: { value: "#3b82f6" },
+          links: {
+            color: "#60a5fa",
+            distance: 150,
+            enable: true,
+            opacity: 0.2,
+            width: 1,
+          },
+          collisions: { enable: true },
+          move: {
+            direction: "none",
+            enable: true,
+            outMode: "bounce",
+            random: false,
+            speed: 1,
+            straight: false,
+          },
+          number: { density: { enable: true, area: 800 }, value: 50 },
+          opacity: { value: 0.2 },
+          shape: { type: "circle" },
+          size: { random: true, value: 3 },
+        },
+        detectRetina: true,
+      });
+
+      // --- Vanilla-Tilt Initialization ---
+      VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
+        max: 15,
+        speed: 400,
+      });
+
+      // --- Dynamic Typing Animation ---
+      const typingWrapper = document.getElementById('typing-wrapper');
+      const typingTextElement = document.getElementById('typing-text');
+      const text = typingTextElement.textContent;
+      document.documentElement.style.setProperty('--char-count', text.length);
+      const typingDuration = text.length * 0.1;
+      document.documentElement.style.setProperty('--typing-duration', `${typingDuration}s`);
+      const totalAnimationTime = (typingDuration + 1.5) * 1000;
+      setTimeout(() => typingWrapper.classList.add('done'), totalAnimationTime);
+
+      // --- Intersection Observer for Scroll Animations ---
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+      
+      // --- Sticky Header Background on Scroll ---
+      const header = document.getElementById('header');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      });
+    });
   </script>
 </body>
 </html>
